@@ -37,7 +37,7 @@ func main() {
 		KeyGenerator:      utils.UUIDv4,
 		ErrorHandler:      fiber.DefaultErrorHandler,
 		Extractor:         csrf.CsrfFromHeader(headerCsrf),
-		Session:           &session.Store{},
+		Session:           session.New(),
 		SessionKey:        "fiber.csrf.token",
 		HandlerContextKey: "fiber.csrf.handler",
 	}))
@@ -46,7 +46,8 @@ func main() {
 		AllowMethods: "GET, POST",
 	}))
 
-	router.NewTodoRouter(app.Group("/api/todo/v1/"))
+	apiV1Prefix := "/api/v1"
+	router.NewTodoRouter(app.Group(apiV1Prefix + "/todo"))
 
 	app.Listen(":3002")
 }
