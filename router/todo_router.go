@@ -2,13 +2,14 @@ package router
 
 import (
 	"micgofiber/controller"
+	"micgofiber/lib"
 	"micgofiber/repository"
 	"micgofiber/service"
-
-	"github.com/gofiber/fiber/v2"
 )
 
-func NewTodoRouter(router fiber.Router) {
+func NewTodoRouter(app *lib.AppConfig) {
+	router := app.GetRouterV1("/todo")
+
 	tR := repository.NewTodoRepo()
 	tS := service.NewTodoService(tR)
 	tC := controller.TodoController{TodoService: tS}
