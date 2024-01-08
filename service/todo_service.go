@@ -1,6 +1,7 @@
 package service
 
 import (
+	"micgofiber/db"
 	"micgofiber/model"
 	"micgofiber/repository"
 	"strings"
@@ -16,7 +17,7 @@ func NewTodoService(todoRepo *repository.TodoRepo) *TodoService {
 	}
 }
 
-func (tS *TodoService) GetData() []model.TodoModel {
+func (tS *TodoService) GetData() []db.Todo {
 	return tS.TodoRepo.Data
 }
 

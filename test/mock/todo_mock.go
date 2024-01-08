@@ -1,6 +1,7 @@
 package mock
 
 import (
+	"micgofiber/db"
 	"micgofiber/model"
 
 	"github.com/jaswdr/faker"
@@ -16,7 +17,7 @@ func NewTodoMock() *TodoMock {
 	return &TodoMock{
 		Dto: &model.TodoRequest{
 			Action: "add",
-			Data: model.TodoModel{
+			Data: db.Todo{
 				Title:       "New Todo",
 				Description: fake.Lorem().Paragraph(200),
 				Check:       false,

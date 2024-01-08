@@ -17,6 +17,7 @@ import (
 type AppConfig struct {
 	App        *fiber.App
 	ApiV1      string
+	Port       string
 	CsrfHeader string
 	CsrfCookie string
 }
@@ -57,9 +58,10 @@ func NewApp() *AppConfig {
 
 	return &AppConfig{
 		App:        app,
+		ApiV1:      "/api/v1",
+		Port:       "3002",
 		CsrfHeader: csrfHeader,
 		CsrfCookie: csrfCookie,
-		ApiV1:      "/api/v1",
 	}
 }
 

@@ -10,5 +10,5 @@ func main() {
 
 	router.NewTodoRouter(server)
 
-	server.App.Listen(":3002")
+	server.App.Listen(":" + server.Port)
 }
