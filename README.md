@@ -1,7 +1,7 @@
 
 # MicGoFiber
 
-Microservice boilerplate for Go Fiber project
+The Microservice boilerplate for Go Fiber project
 
 ## Run Locally
 
@@ -21,6 +21,18 @@ Install dependencies
 
 ```bash
   go mod tidy
+```
+
+Build CLI generator
+
+```bash
+  go build ./cmd/; ./micgo
+```
+
+Migrate schema
+
+```bash
+  ./micgo migrate
 ```
 
 Start the server
@@ -43,4 +55,6 @@ Start the server with Air
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/waynemamahit/micgofiber/blob/main/LICENSE)
+
+Copyright (c) 2023-Present, Waney Wanua Mamahit
