@@ -36,3 +36,7 @@ func (tS *TodoService) Action(request *model.TodoRequest) model.TodoResponse {
 	}
 	return err
 }
+
+func (tS *TodoService) SaveLogFile(logFile model.TodoFile) model.TodoResponse {
+	return tS.TodoRepo.SaveLogFile(logFile)
+}

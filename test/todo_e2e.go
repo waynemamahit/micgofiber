@@ -25,7 +25,9 @@ func (e2e *TodoE2E) GetTodo() (*http.Response, error) {
 }
 
 func (e2e *TodoE2E) ActionTodo() (*http.Response, error) {
-	resp, err := e2e.csrf.Request("/todo", "POST", e2e.mock.Dto)
+	return e2e.csrf.Request("/todo", "POST", e2e.mock.Dto)
+}
 
-	return resp, err
+func (e2e *TodoE2E) UploadFile() (*http.Response, error) {
+	return e2e.csrf.FormRequest("/todo", "PUT", "file", "test_mock.txt", e2e.mock.LogFile)
 }

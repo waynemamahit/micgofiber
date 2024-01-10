@@ -1,11 +1,13 @@
 package lib
 
 import (
+	"net/http"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/csrf"
+	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/gofiber/fiber/v2/middleware/helmet"
 	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -54,6 +56,9 @@ func NewApp() *AppConfig {
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*",
 		AllowMethods: "GET, POST",
+	}))
+	app.Use("/static", filesystem.New(filesystem.Config{
+		Root: http.Dir("./storage"),
 	}))
 
 	return &AppConfig{

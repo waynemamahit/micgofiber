@@ -8,7 +8,8 @@ import (
 )
 
 type TodoMock struct {
-	Dto *model.TodoRequest
+	Dto     *model.TodoRequest
+	LogFile *model.TodoFile
 }
 
 func NewTodoMock() *TodoMock {
@@ -23,6 +24,10 @@ func NewTodoMock() *TodoMock {
 				Check:       false,
 			},
 			Index: 1,
+		},
+		LogFile: &model.TodoFile{
+			Filename:    "test_result.txt",
+			Description: "Lorem ipsum",
 		},
 	}
 }

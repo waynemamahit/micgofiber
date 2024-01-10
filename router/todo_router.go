@@ -16,4 +16,5 @@ func NewTodoRouter(app *lib.AppConfig) {
 
 	router.Get("/", tC.GetTodo)
 	router.Post("/", tC.ActionTodo)
+	router.Put("/", tC.UploadFile)
 }

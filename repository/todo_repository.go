@@ -7,8 +7,9 @@ import (
 )
 
 type TodoRepo struct {
-	Data []db.Todo
-	Db   *lib.DBConfig
+	Data     []db.Todo
+	LogFiles []model.TodoFile
+	Db       *lib.DBConfig
 }
 
 func NewTodoRepo() *TodoRepo {
@@ -52,4 +53,13 @@ func (repo *TodoRepo) DeleteTodo(index int) model.TodoResponse {
 		err.Title = "Success delete todo"
 	}
 	return err
+}
+
+func (repo *TodoRepo) SaveLogFile(logFile model.TodoFile) model.TodoResponse {
+	repo.LogFiles = append(repo.LogFiles, logFile)
+
+	return model.TodoResponse{
+		Title:   "Upload Success",
+		Message: "File has been saved!",
+	}
 }

@@ -33,3 +33,27 @@ func (tC *TodoController) ActionTodo(c *fiber.Ctx) error {
 
 	return c.JSON(response)
 }
+
+func (tC *TodoController) UploadFile(c *fiber.Ctx) error {
+	file, err := c.FormFile("file")
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(model.TodoResponse{
+			Message: "File upload failed",
+		})
+	}
+
+	// Save the file to the server
+	err = c.SaveFile(file, "./storage/"+file.Filename)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "File save failed",
+		})
+	}
+
+	resp := tC.TodoService.SaveLogFile(model.TodoFile{
+		Filename:    file.Filename,
+		Description: c.FormValue("description", "This is default log description."),
+	})
+
+	return c.JSON(resp)
+}
