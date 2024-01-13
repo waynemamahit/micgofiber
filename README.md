@@ -23,22 +23,16 @@ Install dependencies
   go mod tidy
 ```
 
-Build CLI generator
-
-```bash
-  go build ./cmd/; ./micgo
-```
-
 Migrate schema
 
 ```bash
-  ./micgo migrate
+  go run . migrate
 ```
 
 Start the server
 
 ```bash
-  go run main.go
+  go run .
 ```
 
 Start the server with Air
