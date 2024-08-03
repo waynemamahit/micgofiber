@@ -13,8 +13,8 @@ func main() {
 			db.Migrate()
 		}
 	} else {
-		server := lib.NewApp()
-		router.NewTodoRouter(server)
-		server.App.Listen(":" + server.Port)
+		app := lib.NewApp()
+		router.InitApp(app)
+		app.App.Listen(":" + app.Port)
 	}
 }

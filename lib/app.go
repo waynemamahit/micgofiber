@@ -14,6 +14,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/session"
 	"github.com/gofiber/fiber/v2/utils"
+	"github.com/joho/godotenv"
 )
 
 type AppConfig struct {
@@ -25,6 +26,10 @@ type AppConfig struct {
 }
 
 func NewApp() *AppConfig {
+	if err := godotenv.Load("../.env"); err != nil {
+		panic("Failed to get .env file")
+	}
+
 	app := fiber.New()
 
 	// Global Config

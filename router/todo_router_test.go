@@ -1,7 +1,6 @@
-package router
+package router_test
 
 import (
-	"micgofiber/lib"
 	"micgofiber/test"
 	"testing"
 
@@ -9,9 +8,7 @@ import (
 )
 
 func TestNewTodoRouter(t *testing.T) {
-	app := lib.NewApp()
-	NewTodoRouter(app)
-	todo := test.NewTodoE2E(app)
+	todo := test.NewTodoE2E(TestApp)
 	errMessage := "Failed to make request!"
 
 	{

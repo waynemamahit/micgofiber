@@ -3,16 +3,10 @@ package router
 import (
 	"micgofiber/controller"
 	"micgofiber/lib"
-	"micgofiber/repository"
-	"micgofiber/service"
 )
 
-func NewTodoRouter(app *lib.AppConfig) {
+func NewTodoRouter(app *lib.AppConfig, tC controller.TodoController) {
 	router := app.GetRouterV1("/todo")
-
-	tR := repository.NewTodoRepo()
-	tS := service.NewTodoService(tR)
-	tC := controller.TodoController{TodoService: tS}
 
 	router.Get("/", tC.GetTodo)
 	router.Post("/", tC.ActionTodo)
