@@ -8,7 +8,8 @@ import (
 )
 
 func InitApp(app *lib.AppConfig) {
-	tR := repository.NewTodoRepo()
+	db := lib.NewDB()
+	tR := repository.NewTodoRepo(db)
 	tS := service.NewTodoService(tR)
 
 	NewTodoRouter(app, controller.TodoController{TodoService: tS})

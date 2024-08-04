@@ -11,5 +11,21 @@
       "mode": "debug",
       "program": "main.go"
     },
+    {
+      "name": "Debug Migrate Command",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "main.go",
+      "args": ["migrate"]
+    },
+    {
+      "name": "Debug Reset Migrate Command",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "main.go",
+      "args": ["reset-migrate"]
+    },
   ]
 }

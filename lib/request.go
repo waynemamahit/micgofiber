@@ -12,7 +12,13 @@ import (
 	"strings"
 )
 
-func RequestTest(app *AppConfig, url string, method string, body any, headers [][2]string) (*http.Response, error) {
+func RequestTest(
+	app *AppConfig,
+	url string,
+	method string,
+	body any,
+	headers [][2]string,
+) (*http.Response, error) {
 	// Create a new http request with the route from the test case
 	data, errData := json.Marshal(body)
 	if errData != nil {
@@ -37,7 +43,15 @@ func RequestTest(app *AppConfig, url string, method string, body any, headers []
 	return resp, nil
 }
 
-func FormDataRequestTest(app *AppConfig, url string, method string, fieldname string, filename string, dto any, headers [][2]string) (*http.Response, error) {
+func FormDataRequestTest(
+	app *AppConfig,
+	url string,
+	method string,
+	fieldname string,
+	filename string,
+	dto any,
+	headers [][2]string,
+) (*http.Response, error) {
 	// Open the file for reading
 	file, err := os.Open("../test/mock/file/" + filename)
 	if err != nil {

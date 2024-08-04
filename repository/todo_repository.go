@@ -9,12 +9,12 @@ import (
 type TodoRepo struct {
 	Data     []db.Todo
 	LogFiles []model.TodoFile
-	Db       *lib.DBConfig
+	DB       *lib.DBConfig
 }
 
-func NewTodoRepo() *TodoRepo {
+func NewTodoRepo(dbConfig *lib.DBConfig) *TodoRepo {
 	return &TodoRepo{
-		Db: lib.NewDB(),
+		DB: dbConfig,
 	}
 }
 

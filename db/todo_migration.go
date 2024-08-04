@@ -13,12 +13,12 @@ type Todo struct {
 	Check       bool   `json:"check"`
 }
 
-func TodoMigration() {
-	config := lib.NewDB()
+func TodoMigration(config *lib.DBConfig) {
+	config.Db.AutoMigrate(&Todo{})
+}
 
+func TodoDropMigration(config *lib.DBConfig) {
 	if (config.Db.Migrator().HasTable(&Todo{})) {
 		config.Db.Migrator().DropTable(&Todo{})
 	}
-
-	config.Db.AutoMigrate(&Todo{})
 }
