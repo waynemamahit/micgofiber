@@ -12,6 +12,18 @@ import (
 	"strings"
 )
 
+func requestSetup(req *http.Request, headers [][2]string) *http.Request {
+	for _, header := range headers {
+		if len(header) == 2 {
+			req.Header.Set(header[0], header[1])
+		}
+	}
+	req.URL.Scheme = "http"
+	req.URL.Host = "127.0.0.1:3002"
+
+	return req
+}
+
 func RequestTest(
 	app *AppConfig,
 	url string,
@@ -24,17 +36,11 @@ func RequestTest(
 	if errData != nil {
 		return nil, errData
 	}
-	req := httptest.NewRequest(method, url, bytes.NewReader(data))
-	req.Header.Set("Content-Type", "application/json")
-	for _, header := range headers {
-		if len(header) == 2 {
-			req.Header.Set(header[0], header[1])
-		}
-	}
 
-	// Perform the request plain with the app,
-	// the second argument is a request latency
-	// (set to -1 for no latency)
+	req := requestSetup(httptest.NewRequest(method, url, bytes.NewReader(data)), headers)
+	req.Header.Set("Content-Type", "application/json")
+
+	// Perform the request
 	resp, err := app.App.Test(req, -1)
 	if err != nil {
 		return nil, err
@@ -107,20 +113,11 @@ func FormDataRequestTest(
 	writer.Close()
 
 	// Create a request to the specified URL
-	req, err := http.NewRequest(method, url, body)
-	if err != nil {
-		return nil, err
-	}
+	req := requestSetup(httptest.NewRequest(method, url, body), headers)
 	req.Header.Set("Content-Type", writer.FormDataContentType())
-	for _, header := range headers {
-		if len(header) == 2 {
-			req.Header.Set(header[0], header[1])
-		}
-	}
 
 	// Perform the request
-	client := new(http.Client)
-	resp, err := client.Do(req)
+	resp, err := app.App.Test(req, -1)
 	if err != nil {
 		return nil, err
 	}

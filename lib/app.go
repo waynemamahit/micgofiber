@@ -55,7 +55,7 @@ func NewApp() *AppConfig {
 	}))
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*",
-		AllowMethods: "GET, POST",
+		AllowMethods: "GET, POST, PUT",
 	}))
 	app.Use("/static", filesystem.New(filesystem.Config{
 		Root: http.Dir("./storage"),

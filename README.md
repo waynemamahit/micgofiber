@@ -35,12 +35,34 @@ Start the server
   go run .
 ```
 
-Start the server with Air
+Start the server with Air for live reload
 
 ```bash
   air
 ```
 
+## Run Tests
+
+Run test with verbose output
+
+```bash
+  go test ./... -v
+```
+
+Run test with coverage
+
+```bash
+  go test ./... -cover
+```
+
+Run test with coverage output
+
+```bash
+  go test ./... -coverprofile=coverage.out
+```
+```bash
+  go tool cover -html=coverage.out
+```
 
 ## Authors
 
