@@ -53,10 +53,7 @@ func NewApp() *AppConfig {
 		SessionKey:        "fiber.csrf.token",
 		HandlerContextKey: "fiber.csrf.handler",
 	}))
-	app.Use(cors.New(cors.Config{
-		AllowOrigins: "*",
-		AllowMethods: "GET, POST, PUT",
-	}))
+	app.Use(cors.New())
 	app.Use("/static", filesystem.New(filesystem.Config{
 		Root: http.Dir("./storage"),
 	}))
